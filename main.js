@@ -38,3 +38,43 @@ do{
 }while(isEqual)
 console.log(min);
 console.log(max);
+//Chiedo all'utente un numero;
+var inputNumber = parseInt(prompt("Inserisci un numero"));
+while(isNaN(inputNumber)){
+  alert("Hai inserito un valore errato! Reinseriscilo!");
+  inputNumber = parseInt(prompt("Inserisci un numero"));
+}
+//genero n array con numeri random nel range min e max
+var arrayContainer = [];
+var arrayContainer = creaArrayContainer(arrayContainer, inputNumber);
+//conto quante volte compare ogni elemento in tutti gli array
+for (var i = min; i <= max; i++) {
+  document.write("Il numero: " + i + " compare " + contaOccorrenzaElemento(arrayContainer, i) + "<br>");
+}
+
+//Funzione per creare un array contenente n array da 10 elementi
+function creaArrayContainer(arrContainer, numbInput){
+  for (var i = 0; i < numbInput; i++) {
+    var tempArray = [];
+    for (var x = 0; x < 10; x++) {
+      var randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+      tempArray.push(randomNumber);
+    }
+    arrContainer.push(tempArray);
+  }
+  return arrContainer;
+}
+console.log(arrayContainer);
+
+//funzione per contare gli elementi dell'array
+function contaOccorrenzaElemento(arrContainer, index){
+  var contatore = 0; //conta quante vole un numero compare in tutti gli array
+  for (var y = 0; y < arrContainer.length; y++) {
+    for (var x = 0; x < arrContainer[y].length; x++) {
+      if(arrContainer[y][x] == index){
+        contatore++;
+      }
+    }
+  }
+  return contatore;
+}
